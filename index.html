@@ -1,76 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>JSON Validator and Formatter | My Website Name</title>
-  <meta charset="utf-8">
-  <meta name="description" content="Validate and format JSON code with our free online tool.">
-  <meta name="keywords" content="JSON, validate, format, online tool">
-  <meta name="author" content="Your Name">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- Custom CSS -->
-  <style>
-    #output {
-      white-space: pre-wrap;
-    }
-    .is-valid {
-      border-color: #28a745;
-    }
-    .is-invalid {
-      border-color: #dc3545;
-    }
-  </style>
+    <title>JSON Validator and Formatter | My Website Name</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Validate and format JSON code with our free online tool.">
+    <meta name="keywords" content="JSON, validate, format, online tool">
+    <meta name="author" content="Your Name">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-63RTVBK59Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-63RTVBK59Q');
+    </script>
+    <!-- Custom CSS -->
+    <style>
+        #output {
+            white-space: pre-wrap;
+        }
+
+        .is-valid {
+            border-color: #28a745;
+        }
+
+        .is-invalid {
+            border-color: #dc3545;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container my-4">
-    <h1 class="text-center mb-4">JSON Validator and Formatter</h1>
-    <p class="lead">Validate and format your JSON code with our free online tool.</p>
-    <p>To use the tool, simply enter your JSON code in the input box and click the "Validate" button to check if it's valid. If your JSON is valid, the input box will be highlighted green and the message "Valid JSON" will be displayed. If your JSON is invalid, the input box will be highlighted red and the message "Invalid JSON" will be displayed. You can also click the "Format" button to format your JSON code in a more readable way.</p>
-    <form>
-      <div class="form-group">
-        <label for="input">Enter your JSON code:</label>
-        <textarea class="form-control" id="input" rows="10"></textarea>
-        <div class="valid-feedback">Valid JSON</div>
-        <div class="invalid-feedback">Invalid JSON</div>
-      </div>
-      <button type="button" class="btn btn-primary mb-2" id="validateBtn">Validate</button>
-      <button type="button" class="btn btn-secondary mb-2" id="formatBtn">Format</button>
-    </form>
-    <div class="form-group">
-      <label for="output">Formatted JSON code:</label>
-      <textarea class="form-control" id="output" rows="10" readonly></textarea>
+    <div class="container my-4">
+        <h1 class="text-center mb-4">JSON Validator and Formatter</h1>
+        <p class="lead">Validate and format your JSON code with our free online tool.</p>
+        <p>To use the tool, simply enter your JSON code in the input box and click the "Validate" button to check if
+            it's valid. If your JSON is valid, the input box will be highlighted green and the message "Valid JSON" will
+            be displayed. If your JSON is invalid, the input box will be highlighted red and the message "Invalid JSON"
+            will be displayed. You can also click the "Format" button to format your JSON code in a more readable way.
+        </p>
+        <form>
+            <div class="form-group">
+                <label for="input">Enter your JSON code:</label>
+                <textarea class="form-control" id="input" rows="10"></textarea>
+                <div class="valid-feedback">Valid JSON</div>
+                <div class="invalid-feedback">Invalid JSON</div>
+            </div>
+            <button type="button" class="btn btn-primary mb-2" id="validateBtn">Validate</button>
+            <button type="button" class="btn btn-secondary mb-2" id="formatBtn">Format</button>
+        </form>
+        <div class="form-group">
+            <label for="output">Formatted JSON code:</label>
+            <textarea class="form-control" id="output" rows="10" readonly></textarea>
+        </div>
     </div>
-  </div>
-  
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- JSON Validator JS -->
-  <script>
-    // Validate JSON
-    $('#validateBtn').click(function() {
-      var input = $('#input').val();
-      try {
-        JSON.parse(input);
-        $('#input').addClass('is-valid').removeClass('is-invalid');
-        $('.valid-feedback').show();
-        $('.invalid-feedback').hide();
-      } catch (error) {
-        $('#input').addClass('is-invalid').removeClass('is-valid');
-        $('.valid-feedback').hide();
-        $('.invalid-feedback').show();
-      }
-    });
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- JSON Validator JS -->
+    <script>
+        // Validate JSON
+        $('#validateBtn').click(function () {
+            var input = $('#input').val();
+            try {
+                JSON.parse(input);
+                $('#input').addClass('is-valid').removeClass('is-invalid');
+                $('.valid-feedback').show();
+                $('.invalid-feedback').hide();
+            } catch (error) {
+                $('#input').addClass('is-invalid').removeClass('is-valid');
+                $('.valid-feedback').hide();
+                $('.invalid-feedback').show();
+            }
+        });
+
+        // Format JSON
+        $('#formatBtn').click(function () {
+            var input = $('#input').val();
+            try {
+                var output = JSON.stringify(JSON.parse(input), null, 2);
+                $('#output').val(output);
+            } catch (error) {
+                $('#output').val('Invalid JSON');
+            }
+
+        })
+
+
+
     
-    // Format JSON
-    $('#formatBtn').click(function() {
-      var input = $('#input').val();
-      try {
-        var output = JSON.stringify(JSON.parse(input), null, 2);
-        $('#output').val(output);
-      } catch (error) {
-        $('#output').val('Invalid JSON');
-      }
-   
-    })
