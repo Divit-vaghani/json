@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="description" content="Validate and format JSON code with our free online tool.">
-    <meta name="keywords" content="JSON, validate, format, online tool">
+    <meta name="keywords" content="JSON, validate, format, online tool, json formatter">
     <meta name="author" content="Divit Vaghani">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -78,7 +78,7 @@
             } catch (error) {
                 $('#input').addClass('is-invalid').removeClass('is-valid');
                 $('.valid-feedback').hide();
-                $('.invalid-feedback').show();
+                $('.invalid-feedback').show().text('Error: ' + error.message);
             }
         });
 
@@ -89,11 +89,9 @@
                 var output = JSON.stringify(JSON.parse(input), null, 2);
                 $('#output').val(output);
             } catch (error) {
-                $('#output').val('Invalid JSON');
+                $('#output').val('Invalid JSON : ' + error.message);
             }
 
         })
-
-
 
     </script>
